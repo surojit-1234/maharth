@@ -1,0 +1,45 @@
+h1{
+  color: var(--text-color);
+}
+.bg-body-tertiary{
+  background-image: var(--logbg-gredint) !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.bg-body-tertiary .card {
+    background-color: var(--form-bg);
+    border-radius: 10px;
+}
+.input-group-text{
+  background-color: var(--form-bg) !important;
+  border-right: none;
+  border-color: var(--border-color-one);
+}
+.input-group-text svg{
+  color: var(--text-color) !important;
+}
+
+.text-body-secondary {
+    color: var(--text-color) !important;
+    text-align: center;
+}
+
+.form-control{
+    background-color: var(--inputbox-bg);
+    color: var(--text-color);
+    border-left: none;
+    border-color: var(--border-color-one);
+}
+.form-control::placeholder{
+    color: var(--text-color);
+}
+.form-control:focus{
+  background-color: var(--inputbox-bg);
+  color: var(--text-color);
+}
+.shadow{
+  border: none !important;
+}
+

@@ -1,0 +1,25 @@
+.assign-leads-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--form-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .upload-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+
+  .upload-input {
+    margin-top: 10px;
+  }
+
+  .modal-content {
+    background-color: var(--form-bg) !important;
+  }
+  .modal-title{
+    color: var(--text-color) !important;
+  }

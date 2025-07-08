@@ -1,0 +1,218 @@
+
+.table > :not(caption) > * > *{
+    background-color: var(--form-bg) !important;
+    color: var(--text-color);
+ }
+ .right-side-body {
+     /* overflow-y: scroll; */
+ }
+ .table-responsive {
+     max-height: 88vh;
+     overflow-y: scroll;
+     /* overflow-x: scroll; */
+ }
+ 
+ .card-body{
+   background-color: var(--form-bg);
+ }
+ h1, h2, h3, h4, h5, h6{
+   color: var(--text-color);
+   font-weight: 400;
+ }
+ label, span, p{
+     color: var(--text-color) !important;
+ }
+ input, select, select option, textarea{
+     background-color: var(--form-bg) !important;
+     color: var(--text-color) !important;
+     font-size: 14px !important;
+ }
+ input::placeholder, select::placeholder, textarea::placeholder{
+     color: var(--text-color) !important;
+     font-weight: 100;
+ }
+ 
+ .lead-form-title{
+  font-size: 30px;
+  border-bottom: .5px solid #d1cdcd;
+  padding-bottom: 5px;
+ }
+ 
+ #lead-form{
+     max-height: 85vh;
+     overflow-y: scroll;
+ }
+ 
+ .is-invalid {
+     border: 1px solid red !important;
+ }
+ .card-body .form-label{
+     font-weight: 600;
+ }
+ .card-body .form-label, .card-body .form-control{
+     font-size: 12px;
+ }
+ .card-body .form-control::placeholder{
+     font-size: 12px;
+ }
+ .badge{
+     padding: 7px;
+ }
+ 
+ #lead-form .right-side-content{
+     display: flex;
+     align-items: center;
+     gap: 10px;
+ }
+ #lead-form .right-side-content svg{
+     margin-right: 3px;
+ }
+ #lead-form .right-side-content .btn{
+    color: var(--white-one) !important;
+    background-color: rgb(0, 158, 223);
+    padding: 3px 7px;
+ }
+ 
+ 
+ 
+ 
+ .bg-secondary{
+     color: var(--white-one) !important;
+ }
+ 
+ 
+ 
+ 
+ 
+ #lead-form .right-side-content h5{
+   margin: 0;
+   font-size: 14px;
+ }
+ .modal{
+     z-index: 10000 !important;
+ }
+ 
+ .modal-body .loan-wrap{
+   
+ }
+ .modal-body .loan-wrap h5{
+    color: var(--text-color);
+ }
+ .modal-body .loan-wrap p{
+   color: var(--text-color);
+ }
+ .card{
+     background-color: var(--form-bg);
+     box-shadow: none !important;
+ }
+ 
+ 
+ .readonly-input {
+   background-color: #f8f9fa !important;
+   border-color: #dee2e6 !important;
+   color: #6c757d;
+   pointer-events: none;
+ }
+ .clock-duration{
+    border: 1px solid var(--green-one);
+    padding: 0 5px 0px 0;
+    border-radius: 2px;
+ }
+ .clock-duration span{
+    padding: 6px;
+    display: inline-block;
+    background-color: var(--green-one);
+    margin-right: 4px;
+ }
+ .clock-duration svg{
+    color: var(--white-one);
+ }
+ .card-header{
+    position: sticky;
+    top: 0;
+ }
+ .update-btn{
+    position: sticky;
+    bottom: 0;
+    background-color: var(--form-bg);
+    padding: 5px;
+ }
+
+ .all-data-container{
+    padding: 10px;
+ }
+ .all-data-container .title{
+    color: var(--text-color);
+    font-size: 19px;
+    font-weight: bold;
+ }
+ .all-data-container button{
+   margin: 10px;
+ }
+ .all-data-container p{
+    margin-bottom: 6px
+ }
+ .all-data-container .box{
+   border: 1px solid var(--border-one);
+   border-radius: 6px;
+ }
+
+ .all-data-container .all-history{
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 10px;
+ }
+ .all-history .box{
+  width: 100%;
+  /* display: inline !important;
+  grid-template-columns: 50% 50%;
+  gap: 10px !important; */
+  font-size: 14px;
+ } 
+ .all-history .box button{
+    width: 80px;
+ }
+
+ .all-history .box .date{
+  color: var(--text-color);
+} 
+
+.all-history .box .time{
+ color: var(--text-color);
+} 
+
+ .audio-modal-header{
+    margin: 5px 10px;
+
+ }
+ .audio-modal-header button{
+    height: 6px;
+    width: 6px;
+    padding: 10px;
+    background-color: var(--green-one);
+    font-size: 13px;
+ }
+.audio-modal{
+    background-color: var(--form-bg) !important;
+    padding: 0 !important;
+    min-width: 400px !important;
+    background-image: url('../../assets/images/headphone.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.audio-modal-body {
+    margin: 45px 14px 10px 14px !important;
+}
+ /* .audio-modal-header .btn-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+ } */
+
+ @media(max-width: 992px){
+    .all-data-container .all-history{
+        grid-template-columns: auto;
+    }
+ }
+ 
