@@ -20,7 +20,7 @@ const NotificationScheduler = ({ leads }) => {
         const scheduledTime = new Date(`${dateStr}T${startTime}:00`);
 
         // Subtract 15 minutes
-        scheduledTime.setMinutes(scheduledTime.getMinutes()); //-15
+        scheduledTime.setMinutes(scheduledTime.getMinutes()-15); //-15
 
         const delay = scheduledTime.getTime() - now.getTime();
 
