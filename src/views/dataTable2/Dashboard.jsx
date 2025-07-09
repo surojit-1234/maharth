@@ -19,7 +19,7 @@ import NotificationScheduler from '../../components/notification';
 
 const getBadge = (status) => {
   switch (status) {
-    case 1: return 'success';
+    case 1: return 'info';
     case 2: return 'secondary';
     case 3: return 'danger';
     case 4: return 'warning';
@@ -263,7 +263,7 @@ const Dashboard = () => {
 //   }, [notifiedLeadIds]);
 
   return (
-    <section className="dashboard-wrap my-3">
+    <section className="dashboard-wrap my-2">
       <CCard>
         <CCardHeader className="d-flex align-items-center justify-content-between">
           <strong>Dashboard</strong>
@@ -368,6 +368,7 @@ const Dashboard = () => {
               ),
 
               email: (item) => <td><TruncateText text={item.email} maxLength={6} /></td>,
+              loan_type: (item) => <td><TruncateText text={item.loan_type} maxLength={8} /></td>,
 
               remarks: (item) => {
                 // Show last remark
@@ -402,25 +403,25 @@ const Dashboard = () => {
                 </td>
               ),
 
-              recording_file: (item) => (
-                <td>
-                  {item.recordings && item.recordings.length > 0 ? (
-                    <CButton
-                      size="sm"
-                      color="primary"
-                      variant="outline"
-                      onClick={() =>
-                        setAudioSrc(`http://localhost:8000/uploads/${item.recordings[item.recordings.length - 1]}`)
-                      }
-                    >
-                      <FaPlay style={{ marginRight: '5px' }} />
-                      Play
-                    </CButton>
-                  ) : (
-                    ''
-                  )}
-                </td>
-              ),
+              // recording_file: (item) => (
+              //   <td>
+              //     {item.recordings && item.recordings.length > 0 ? (
+              //       <CButton
+              //         size="sm"
+              //         color="primary"
+              //         variant="outline"
+              //         onClick={() =>
+              //           setAudioSrc(`http://localhost:8000/uploads/${item.recordings[item.recordings.length - 1]}`)
+              //         }
+              //       >
+              //         <FaPlay style={{ marginRight: '5px' }} />
+              //         Play
+              //       </CButton>
+              //     ) : (
+              //       ''
+              //     )}
+              //   </td>
+              // ),
 
               // Optional: display latest follow-up time if available
               follow_up_time: (item) => {
@@ -465,11 +466,11 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* {!loading && items.length > 0 && (
+      {!loading && items.length > 0 && (
         <NotificationScheduler leads={items} />
-      )} */}
+      )}
     </section>
   );
 };
 
-export default Dashboard;
+export default React.memo(Dashboard);

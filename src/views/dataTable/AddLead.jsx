@@ -31,6 +31,7 @@ const AddLead = () => {
 
   const[allFiles, setAllFiles] = useState([]);
 
+
   useEffect(() => {
     if (lead && lead.recordings && lead.remarks && lead.follow_up_date && lead.follow_up_time && lead.duration) {
       const combined = [];
@@ -65,6 +66,7 @@ const AddLead = () => {
     mobile: '',
     customer_type: '',
     customer_status: '',
+    loan_category: '',
     loan_type: '',
     follow_up: '',
     remarks: '',
@@ -205,7 +207,14 @@ const AddLead = () => {
     }
 
     data.append('time_spent_seconds', time);
-    data.append('calling_date_time', new Date().toISOString());
+
+    function getMySQLDateTime() {
+      const now = new Date();
+      return now.toISOString().slice(0, 19).replace('T', ' ');
+    }
+    
+    data.append('calling_date_time', getMySQLDateTime());
+    // data.append('calling_date_time', new Date().toISOString());
 
     
     try {
@@ -264,7 +273,7 @@ const AddLead = () => {
     <>
       <div className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-md-12 p-0 my-3">
+          <div className="col-md-12 p-0 my-2">
             <div className="card shadow" id="lead-form">
               {/* <div className="card-body"> */}
 
@@ -454,9 +463,28 @@ const AddLead = () => {
                     </i>
                   </div>
 
+                  {/*==Loan category---*/}
+                  <div className="col-md-3">
+                    <label className="form-label">Loan Category</label>
+                    <select
+                      className={`form-select form-control`}
+                      name="loan_category"
+                      value={formData.loan_category}
+                      onChange={handleChange}
+                      disabled={readonly}
+                    >
+                      <option value="">Select</option>
+                      <option>Secured</option>
+                      <option>Unsecured</option>
+                    </select>
+                    {/* <i className='text-danger' style={{ fontSize: "13px" }}>
+                      {formErrors.loan_type ? '*This field is required' : ''}
+                    </i> */}
+                  </div>
+
                   {/* Loan Type */}
                   <div className="col-md-3">
-                    <label className="form-label">Loan Type </label>
+                    <label className="form-label">Select Loan</label>
                     <select
                       className={`form-select form-control`}
                       name="loan_type"
@@ -465,9 +493,14 @@ const AddLead = () => {
                       disabled={readonly}
                     >
                       <option value="">Select</option>
-                      <option>Personal</option>
-                      <option>Business</option>
-                      <option>Professional</option>
+                      <option>LAP (Loan Against Proptery)</option>
+                      <option>LAS (Loan Against Share), Securities, FD etc.</option>
+                      <option>Housing Loan</option>
+                      <option>Project Loan</option>
+                      <option>Personal Loan</option>
+                      <option>Professional Loan (For Doctor & CA Only)</option>
+                      <option>Business Loan</option>
+                      <option>Overdraft</option>
                     </select>
                     {/* <i className='text-danger' style={{ fontSize: "13px" }}>
                       {formErrors.loan_type ? '*This field is required' : ''}
@@ -570,25 +603,38 @@ const AddLead = () => {
                         {/* <div className='time'> <b className='text-success'>Follow Up Time: </b>{ file.follow_up_time && file.follow_up_time }</div> */}
                         {/* <PiLineVertical /> */}
                         {file.recording && (
-                          <CButton
-                            className='m-1'
-                            size="sm"
-                            color="primary"
-                            variant="outline"
-                            onClick={() => setAudioSrc(`http://localhost:8000/uploads/${file.recording}`)}
-                          >
-                            <FaPlay style={{ marginRight: '5px' }} /> Play
-                          </CButton>
+                          <>
+                            <b className='text-success'>Recording: </b>
+                            <CButton
+                              style={{backgroundColor:"rgb(0, 158, 223)"}}
+                              className='m-1'
+                              size="sm"
+                              color="primary"
+                              variant="outline"
+                              onClick={() => setAudioSrc(`http://localhost:8000/uploads/${file.recording}`)}
+                            >
+                              <FaPlay /> <span>Play</span>
+                            </CButton>
+                          </>
                         )}
-                         <PiLineVertical style={{fontSize:"20px"}}/> 
+                        <PiLineVertical style={{fontSize:"20px"}}/>  {/*--For vertical Line--*/}
+                        {file.duration && 
+                         <span className='remark'>
+                            <b className='text-success'>Duration: </b> <span className="m-1">{file.duration}</span>
+                         </span>
+                        } 
+                        <PiLineVertical style={{fontSize:"20px"}}/>  {/*--For vertical Line--*/}
                         <span className='follow-up-date-time'>
-                         <b className='text-success'>Follow Up date & Time:</b>
-                         <b> {file.follow_up_date} & {file.follow_up_time}</b>
+                          <b className='text-success'>Follow Up date & Time:</b>
+                          <b> {file.follow_up_date} & {file.follow_up_time}</b>
                         </span> 
-                        <div>
-                          {file.remark && <span className='remark'><b className='text-success'>Remark: </b> <span className="m-1">{file.remark}</span></span>}
-                          <PiLineVertical style={{fontSize:"20px"}}/> 
-                          {file.duration && <span className='remark'><b className='text-success'>Duration: </b> <span className="m-1">{file.duration}</span></span>}
+                        <div className='my-1'>
+                          {file.remark && 
+                           <span className='remark'>
+                             <b className='text-success'>Remark: </b> 
+                             <span className="m-1">{file.remark}</span>
+                            </span>
+                          }
                         </div>
                       </div>
                     ))}
@@ -631,4 +677,4 @@ const AddLead = () => {
   );
 };
 
-export default AddLead;
+export default React.memo(AddLead);

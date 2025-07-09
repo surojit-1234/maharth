@@ -170,7 +170,9 @@
   font-size: 14px;
  } 
  .all-history .box button{
-    width: 80px;
+    border: 1px solid var(--text-color) !important;
+    width: fit-content;
+    padding: 2px 4px;
  }
 
  .all-history .box .date{

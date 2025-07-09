@@ -125,6 +125,10 @@
   font-weight: 600;
   font-size: 14px;
 }
+.dashboard-wrap table tbody tr td .badge{
+  padding: 5px 7px;
+  color: #fff !important;
+}
 
 hr{
   border-top: 1px solid #9d9898 !important;
@@ -133,11 +137,13 @@ hr{
 tr>th:first-child,tr>td:first-child {
   position: sticky;
   left: 0;
+  text-align: center !important;
 }
 tr>th:last-child,tr>td:last-child {
   position: sticky;
   right: 0;
   background-color: none  !important;
+  text-align: center !important;
 }
 td audio{
   height: 30px;
@@ -153,9 +159,25 @@ td audio{
 td.green-row{
   background-color: #008000  !important;
 }
-td.green-row ~ td  {
+
+td.green-row ~ td {
   background-color: #008000  !important;
+  color: #fff;
 }
+
+td.green-row ~ td span  {
+  color: #fff !important;
+}
+
+td.green-row button{
+  background-color: #5856d6 !important;
+  color: #fff !important;
+}
+
+/* .btn:disabled, .btn.disabled{
+  background-color: #000 !important;
+  border: 1px solid #fff !important;
+} */
 
 
 /*-----Audio Player Popup style-----*/

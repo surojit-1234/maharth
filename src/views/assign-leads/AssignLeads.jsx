@@ -90,7 +90,7 @@ const AssignLeads = () => {
 
 
   return (
-    <div className="col-12 my-3">
+    <div className="col-12 my-2">
     <CCard>
     <CCardHeader>
       <strong>Assign Leads from Excel</strong>
@@ -148,4 +148,4 @@ const AssignLeads = () => {
   )
 }
 
-export default AssignLeads;
+export default React.memo(AssignLeads);

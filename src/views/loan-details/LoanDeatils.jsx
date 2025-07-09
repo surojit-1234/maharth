@@ -10,7 +10,7 @@ import {
 
 const LoanDeatils = () => {
   return (
-    <CCard className='my-3'>
+    <CCard className='my-2'>
         <CCardHeader className="d-flex align-items-center justify-content-between">
           <strong>Loan Details</strong>
         </CCardHeader>
@@ -26,4 +26,4 @@ const LoanDeatils = () => {
   )
 }
 
-export default LoanDeatils
+export default React.memo(LoanDeatils);

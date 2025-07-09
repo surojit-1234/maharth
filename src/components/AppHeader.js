@@ -21,12 +21,13 @@ import { TbLogout2 } from 'react-icons/tb'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { toast } from 'react-toastify'
 import Logo from '../assets/images/maha-logo.png'
+import { FaPhoneAlt } from "react-icons/fa";
 
 const AppHeader = () => {
   const navigate = useNavigate()
   const headerRef = useRef()
   const dispatch = useDispatch()
-  const sidebarShow = useSelector((state) => state.sidebarShow)
+  const sidebarShow = useSelector((state) => state.sidebarShow);
 
   const [colorMode, setColorMode] = useState('light-theme')
   const [notifications, setNotifications] = useState([])
@@ -49,8 +50,8 @@ const AppHeader = () => {
 
   // Load today's follow-ups from localStorage
   useEffect(() => {
-    const todaysFollowups = JSON.parse(localStorage.getItem('todaysFollowups') || '[]')
-    setNotifications(todaysFollowups)
+    const todaysFollowups = JSON.parse(localStorage.getItem('todaysFollowups') || '[]');
+    setNotifications(todaysFollowups);
   }, [])
 
   const toggleSidebar = () => {
@@ -107,9 +108,10 @@ const AppHeader = () => {
                 notifications.map((lead, index) => (
                   <CDropdownItem
                     key={index}
-                    onClick={() => navigate(`/add-lead/${lead.id}`, { state: { lead } })}
+                    // onClick={() => navigate(`/add-lead/${lead.id}`, { state: { lead } })}
                   >
-                    📞 {lead.fname} {lead.lname} - {lead.mobile}
+                    <FaPhoneAlt /> &nbsp;
+                    {lead.fname} {lead.lname} - {lead.mobile}
                   </CDropdownItem>
                 ))
               ) : (
