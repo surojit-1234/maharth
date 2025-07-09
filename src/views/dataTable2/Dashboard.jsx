@@ -16,6 +16,7 @@ import { FaPlay } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosSearch } from "react-icons/io";
 import NotificationScheduler from '../../components/notification';
+import { useLocation } from 'react-router-dom';
 
 const getBadge = (status) => {
   switch (status) {
@@ -38,6 +39,7 @@ const mapStatusText = (status) => {
     default: return '';
   }
 };
+
 
 // const[todayFollowups,setTodayFollowUps] = useState([]);
 
@@ -102,6 +104,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const time = useSelector((state) => state.time);
+
+  // when click on particular notification its corresponding table row will be highlighted
+  const location = useLocation();
+  const highlightedLeadIdAsPerNotification = location.state?.highlightedLeadIdAsPerNotification || null;
+
 
   const [searchTerm, setSearchTerm] = useState('');
   const [items, setItems] = useState([]);
@@ -262,6 +269,14 @@ const Dashboard = () => {
 //     return () => clearInterval(interval);
 //   }, [notifiedLeadIds]);
 
+ /*====---Highlighted LeadId with scroll when click on Notifications----======*/
+ useEffect(() => {
+  if (highlightedLeadIdAsPerNotification) {
+    const el = document.querySelector(`[data-row-id='row-${highlightedLeadIdAsPerNotification}']`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}, [highlightedLeadIdAsPerNotification]);
+
   return (
     <section className="dashboard-wrap my-2">
       <CCard>
@@ -311,10 +326,15 @@ const Dashboard = () => {
                   isTodayFollowUp = followUpDate.getTime() === today.getTime();
                 }
 
-                const complete = isLeadComplete(item);
+              const complete = isLeadComplete(item);
+
+
+             
 
                 return (
-                  <td className={isTodayFollowUp ? 'green-row' : ''}>
+                  <td 
+                   data-row-id={`row-${item.id}`}
+                   className={`${highlightedLeadIdAsPerNotification === item.id ? 'highlighted-row' : ''} ${isTodayFollowUp ? 'green-row' : ''}`}>
                     {complete && !isTodayFollowUp ? (
                       <CButton size="sm" color="success" variant="outline" disabled>
                         Done
@@ -444,7 +464,11 @@ const Dashboard = () => {
 
             }}
             tableProps={{ responsive: true, hover: true, striped: true }}
-            tableBodyProps={{ className: 'align-middle' }}
+            tableBodyProps={{ className: 'align-middle' ,
+            rowProps: (item) => ({
+                className: highlightedLeadId === item.id ? 'highlighted-row' : '',
+              }),
+            }}
           />
         </CCardBody>
       </CCard>
